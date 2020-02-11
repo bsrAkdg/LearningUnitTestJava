@@ -14,6 +14,10 @@ public class CustomerService {
         informationHelper.sendEmailToCustomer(customer);
     }
 
+    public void removeCustomer(Integer customerId) {
+        customerRepository.removeCustomer(customerId);
+    }
+
     public void setCustomerRepository(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
     }
