@@ -8,6 +8,10 @@ public class CustomerService {
     private CustomerRepository customerRepository;
     private InformationHelper informationHelper;
 
+    public void clear() {
+        customerRepository.clear();
+    }
+
     // Test will be written to this method
     public void saveCustomer(Customer customer) {
         customerRepository.saveCustomer(customer);
