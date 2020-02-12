@@ -1,5 +1,7 @@
 package com.bsrakdg.introductionunittest.stepOneCustomerExample;
 
+import com.bsrakdg.introductionunittest.common.InformationHelper;
+
 /**
  * Test will be written to this class
  */

@@ -3,6 +3,8 @@ package com.bsrakdg.introductionunittest.stepOneCustomerExample;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import com.bsrakdg.introductionunittest.common.InformationHelper;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
