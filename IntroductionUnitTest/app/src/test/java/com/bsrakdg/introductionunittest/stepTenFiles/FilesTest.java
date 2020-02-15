@@ -15,7 +15,7 @@ public class FilesTest {
     @Test
     public void testFile() throws Exception {
         File file = new File("/Users/bserdaroglu/GithubWorks/LearningUnitTestJava/IntroductionUnitTest/app/src/test/resources/test.txt");
-        // new File("{copyFilePathOn/app/src/test/resources/test.txt");
+        // new File("copyFilePathOn/app/src/test/resources/test.txt");
         assertThat(file)
                 .exists()
                 .canRead()
@@ -26,7 +26,7 @@ public class FilesTest {
     @Test
     public void testContentOfContentFile() throws Exception {
         File file = new File("/Users/bserdaroglu/GithubWorks/LearningUnitTestJava/IntroductionUnitTest/app/src/test/resources/test.txt");
-        // new File("{copyFilePathOn/app/src/test/resources/test.txt");
+        // new File("copyFilePathOn/app/src/test/resources/test.txt");
         assertThat(contentOf(file))
                 .startsWith("Hi");
     }
