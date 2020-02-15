@@ -1,5 +1,7 @@
 package com.bsrakdg.introductionunittest.stepOneCustomerExample;
 
+import com.bsrakdg.introductionunittest.common.CustomerRepository;
+
 import java.util.HashMap;
 import java.util.Map;
 
