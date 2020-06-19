@@ -1,0 +1,11 @@
+UNIT TEST NOTES
+
+----------------------
+
+* There are three types tests :
+  1. Unit : JUnit Mockito
+  2. Instrumentation : JUnit Mockito
+  3. UI : Expresso
+ 
+* 
+  
