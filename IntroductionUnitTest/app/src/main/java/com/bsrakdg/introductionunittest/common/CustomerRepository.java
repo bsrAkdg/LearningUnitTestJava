@@ -1,4 +1,6 @@
-package com.bsrakdg.introductionunittest.stepOneCustomerExample;
+package com.bsrakdg.introductionunittest.common;
+
+import com.bsrakdg.introductionunittest.stepOneCustomerExample.Customer;
 
 public class CustomerRepository {
 
