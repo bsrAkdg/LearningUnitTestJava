@@ -5,13 +5,13 @@ import java.util.Date;
 
 public class DateUtil {
     // Database : 06-2020
-    // UI : June 2020 
+    // UI : June 2020
 
-    public static final String[] monthNumbers = {"01", "02", "03", "04", "05", "06", "07", "08",
+    static final String[] monthNumbers = {"01", "02", "03", "04", "05", "06", "07", "08",
             "09", "10", "11", "12"};
-    private static final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"
+    static final String[] months = {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug"
             , "Sep", "Oct", "Nov", "Dec"};
-    private static final String GET_MONTH_ERROR = "Error. Invalid month number.";
+    static final String GET_MONTH_ERROR = "Error. Invalid month number.";
     private static final String DATE_FORMAT = "MM-yyyy";
     private static final String TAG = "Utility";
 
@@ -69,6 +69,4 @@ public class DateUtil {
             }
         }
     }
-
-
 }
