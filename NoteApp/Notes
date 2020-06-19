@@ -6,6 +6,27 @@ UNIT TEST NOTES
   1. Unit : JUnit Mockito
   2. Instrumentation : JUnit Mockito
   3. UI : Expresso
- 
-* 
-  
+
+            * Unit Test :
+               - Local computer, do not use emulator
+               - JVM
+               - Very fast
+               - JUnit5, Mockito
+
+            * Instrumentation :
+               - Similar to local unit tests
+               - Need a real device or emulator
+               - JUnit4, Mockito (JUnit5 : some dependencies do not working true for now)
+
+            * UI :
+               - Simulate a person using your app
+               - Literally uses widgets
+               - Real device or emulator
+               - Expresso
+
+* Android project src folder contains three folders :
+    - main
+    - androidTest : Mockito, JUnit, Expresso (Instrumentation & UI)
+    - test : Mockito, JUnit (Unit)
+
+*
