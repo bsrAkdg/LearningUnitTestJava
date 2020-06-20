@@ -3,8 +3,10 @@ package com.bsrakdg.noteapp;
 import androidx.room.Room;
 import androidx.test.core.app.ApplicationProvider;
 
+import com.bsrakdg.noteapp.models.Note;
 import com.bsrakdg.noteapp.persistence.NoteDao;
 import com.bsrakdg.noteapp.persistence.NoteDatabase;
+import com.bsrakdg.noteapp.utils.TestUtil;
 
 import org.junit.After;
 import org.junit.Before;
@@ -13,6 +15,9 @@ public abstract class NoteDatabaseTest {
 
     // system under test
     private NoteDatabase noteDatabase;
+
+    // sample : sharing resource between test and androidTest directions
+    private Note note = TestUtil.NOTE;
 
     public NoteDao getNoteDao() {
         return noteDatabase.getNoteDao();

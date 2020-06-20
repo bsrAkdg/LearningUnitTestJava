@@ -29,4 +29,11 @@ UNIT TEST NOTES
     - androidTest : Mockito, JUnit, Expresso (Instrumentation & UI)
     - test : Mockito, JUnit (Unit)
 
+* Sharing resource between test and androidTest directions :
+    - Create test-common directory on src
+    - Give the same directory path this directory with test and androidTest (com.bsrakdg.noteapp.utils)
+    - Create new class (TestUtil)
+    - Create field to share (public static Note NOTE = new Note();)
+    - Access the shared field from test and androidTest (private Note note = TestUtil.NOTE;)
+
 *
