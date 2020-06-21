@@ -45,3 +45,7 @@ UNIT TEST NOTES
     operation before each test, it's preferable to execute it only once before running all tests
     using @BeforeClass. Some examples of common expensive operations are the creation of
     a database connection or the startup of a server.
+
+* blockingGet() for Single, blockingFirst() for Flowable.
+
+*
