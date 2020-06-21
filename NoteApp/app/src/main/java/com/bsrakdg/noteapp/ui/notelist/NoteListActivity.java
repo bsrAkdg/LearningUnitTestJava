@@ -1,8 +1,9 @@
-package com.bsrakdg.noteapp;
+package com.bsrakdg.noteapp.ui.notelist;
 
 import android.os.Bundle;
 import android.util.Log;
 
+import com.bsrakdg.noteapp.R;
 import com.bsrakdg.noteapp.repository.NoteRepository;
 
 import javax.inject.Inject;
