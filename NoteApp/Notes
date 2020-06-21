@@ -36,4 +36,12 @@ UNIT TEST NOTES
     - Create field to share (public static Note NOTE = new Note();)
     - Access the shared field from test and androidTest (private Note note = TestUtil.NOTE;)
 
-*
+* @Before, @BeforeClass, @BeforeEach and @BeforeAll annotations in JUnit 4 and 5 :
+
+    - @Before JUnit4 (@BeforeEach JUnit5) : Methods annotated with the @Before annotation are
+    executed before each test. This is useful when we want to execute some common code before running a test.
+
+    - @BeforeClass JUnit4 (@BeforeAll JUnit5)  : When we want to execute an expensive common
+    operation before each test, it's preferable to execute it only once before running all tests
+    using @BeforeClass. Some examples of common expensive operations are the creation of
+    a database connection or the startup of a server.
