@@ -2,4 +2,6 @@
     <string name="app_name">NoteApp</string>
     <string name="intent_note">intent_note</string>
     <string name="error_intent_note">ERROR: Can\'t display note properties Close the app and try again</string>
+    <string name="error_setting_note_properties">Error setting note properties</string>
+    <string name="error_displaying_note_properties">Error displaying note properties</string>
 </resources>

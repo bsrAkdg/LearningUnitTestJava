@@ -1,5 +1,6 @@
 package com.bsrakdg.noteapp.di;
 
+import com.bsrakdg.noteapp.ui.note.NoteActivity;
 import com.bsrakdg.noteapp.ui.notelist.NoteListActivity;
 
 import dagger.Module;
@@ -10,4 +11,7 @@ public abstract class ActivityBuildersModule {
 
     @ContributesAndroidInjector
     abstract NoteListActivity contributeNoteListActivity();
+
+    @ContributesAndroidInjector
+    abstract NoteActivity contributeNoteActivity();
 }
