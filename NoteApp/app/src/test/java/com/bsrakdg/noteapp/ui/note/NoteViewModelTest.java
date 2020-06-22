@@ -12,11 +12,13 @@ import static org.mockito.Mockito.when;
 import com.bsrakdg.noteapp.models.Note;
 import com.bsrakdg.noteapp.repository.NoteRepository;
 import com.bsrakdg.noteapp.ui.Resource;
+import com.bsrakdg.noteapp.utils.InstantExecutorExtension;
 import com.bsrakdg.noteapp.utils.LiveDataTestUtil;
 import com.bsrakdg.noteapp.utils.TestUtil;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.function.Executable;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -24,7 +26,10 @@ import org.mockito.MockitoAnnotations;
 import io.reactivex.Flowable;
 import io.reactivex.internal.operators.single.SingleToFlowable;
 
-class NoteViewModelTest {
+// @RunWith is an old annotation from JUnit 4 to use test runners.
+// If you're using JUnit 5 (Jupiter), you should use @ExtendWith to use JUnit extensions.
+@ExtendWith(InstantExecutorExtension.class)
+public class NoteViewModelTest {
 
     // system under test
     private NoteViewModel noteViewModel;
@@ -33,7 +38,7 @@ class NoteViewModelTest {
     private NoteRepository noteRepository;
 
     @BeforeEach
-    void init() {
+     void init() {
         MockitoAnnotations.initMocks(this);
         noteViewModel = new NoteViewModel(noteRepository);
     }

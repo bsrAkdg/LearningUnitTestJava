@@ -1,7 +1,4 @@
 package com.bsrakdg.noteapp.utils;
-
-import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 
@@ -22,7 +19,6 @@ public class LiveDataTestUtil<T> {
         Observer<T> observer = new Observer<T>() {
             @Override
             public void onChanged(T t) {
-                Log.d("LiveDataTestUtil", "onChanged : " + t.toString());
                 data.add(t);
                 latch.countDown(); // release the latch
                 liveData.removeObserver(this);
@@ -34,7 +30,7 @@ public class LiveDataTestUtil<T> {
         } catch (InterruptedException e) {
             throw new InterruptedException("Latch failure");
         }
-        if (data.size() > 0) {
+        if(data.size() > 0){
             return data.get(0);
         }
         return null;
