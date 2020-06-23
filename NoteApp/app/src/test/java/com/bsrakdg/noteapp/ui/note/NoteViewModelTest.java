@@ -1,6 +1,7 @@
 package com.bsrakdg.noteapp.ui.note;
 
 import static com.bsrakdg.noteapp.repository.NoteRepository.INSERT_SUCCESS;
+import static com.bsrakdg.noteapp.repository.NoteRepository.UPDATE_SUCCESS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -78,7 +79,6 @@ public class NoteViewModelTest {
     /*
         Insert a new note and observe row returned
      */
-
     @Test
     void insertNote_returnRow() throws Exception {
         // Arrange
@@ -130,5 +130,42 @@ public class NoteViewModelTest {
                 noteViewModel.setNote(note);
             }
         });
+    }
+
+    /*
+        Update a new note and observe row returned
+    */
+    @Test
+    void updateNote_returnRow() throws Exception {
+        // Arrange
+        Note note = new Note(TestUtil.TEST_NOTE_1);
+        LiveDataTestUtil<Resource<Integer>> liveDataTestUtil = new LiveDataTestUtil<>();
+        final int updatedRow = 1;
+        Flowable<Resource<Integer>> returnedData = SingleToFlowable
+                .just(Resource.success(updatedRow,
+                        UPDATE_SUCCESS));
+        when(noteRepository.updateNote(any(Note.class))).thenReturn(returnedData);
+
+        // Act
+        noteViewModel.setNote(note);
+        Resource<Integer> returnedValue = liveDataTestUtil.getValue(noteViewModel.updateNote());
+
+        // Assert
+        assertEquals(Resource.success(updatedRow, UPDATE_SUCCESS), returnedValue);
+    }
+
+    /*
+        Update : don't return a new row without observer
+     */
+    @Test
+    void doNotReturnUpdateRow_withoutObserver() throws Exception {
+        // Arrange
+        Note note = new Note(TestUtil.TEST_NOTE_1);
+
+        // Act
+        noteViewModel.setNote(note);
+
+        // Assert
+        verify(noteRepository, never()).updateNote(any(Note.class));
     }
 }
