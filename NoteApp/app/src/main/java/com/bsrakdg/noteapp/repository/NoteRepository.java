@@ -1,11 +1,14 @@
 package com.bsrakdg.noteapp.repository;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.LiveDataReactiveStreams;
 
 import com.bsrakdg.noteapp.models.Note;
 import com.bsrakdg.noteapp.persistence.NoteDao;
 import com.bsrakdg.noteapp.ui.Resource;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import javax.inject.Inject;
@@ -98,5 +101,42 @@ public class NoteRepository {
                 })
                 .subscribeOn(Schedulers.io())
                 .toFlowable();
+    }
+
+    private void checkId(Note note) throws Exception {
+        if (note.getId() < 0) {
+            throw new Exception(INVALID_NOTE_ID);
+        }
+    }
+
+    // We do not need to flowable, because there is no multiple possibility, just delete (not
+    // update or save)
+    public LiveData<Resource<Integer>> deleteNote(final Note note) throws Exception {
+        checkId(note);
+
+        return LiveDataReactiveStreams.fromPublisher(
+                noteDao.deleteNote(note)
+                        .onErrorReturn(new Function<Throwable, Integer>() {
+                            @Override
+                            public Integer apply(Throwable throwable) throws Exception {
+                                return -1;
+                            }
+                        })
+                        .map(new Function<Integer, Resource<Integer>>() {
+                            @Override
+                            public Resource<Integer> apply(Integer integer) throws Exception {
+                                if (integer > 0) {
+                                    return Resource.success(integer, DELETE_SUCCESS);
+                                }
+                                return Resource.error(null, DELETE_FAILURE);
+                            }
+                        })
+                        .subscribeOn(Schedulers.io())
+                        .toFlowable()
+        );
+    }
+
+    public LiveData<List<Note>> getNotes() {
+        return noteDao.getNotes();
     }
 }
