@@ -2,6 +2,7 @@ package com.bsrakdg.noteapp.ui.note;
 
 import static com.bsrakdg.noteapp.repository.NoteRepository.INSERT_SUCCESS;
 import static com.bsrakdg.noteapp.repository.NoteRepository.UPDATE_SUCCESS;
+import static com.bsrakdg.noteapp.ui.note.NoteViewModel.NO_CONTENT_ERROR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -92,7 +93,8 @@ public class NoteViewModelTest {
 
         // Act
         noteViewModel.setNote(note);
-        Resource<Integer> returnedValue = liveDataTestUtil.getValue(noteViewModel.insertNote());
+        noteViewModel.setIsNewNote(true); // triggers insert note
+        Resource<Integer> returnedValue = liveDataTestUtil.getValue(noteViewModel.saveNote());
 
         // Assert
         assertEquals(Resource.success(insertedRow, INSERT_SUCCESS), returnedValue);
@@ -148,7 +150,8 @@ public class NoteViewModelTest {
 
         // Act
         noteViewModel.setNote(note);
-        Resource<Integer> returnedValue = liveDataTestUtil.getValue(noteViewModel.updateNote());
+        noteViewModel.setIsNewNote(false); // triggers update note
+        Resource<Integer> returnedValue = liveDataTestUtil.getValue(noteViewModel.saveNote());
 
         // Assert
         assertEquals(Resource.success(updatedRow, UPDATE_SUCCESS), returnedValue);
@@ -167,5 +170,30 @@ public class NoteViewModelTest {
 
         // Assert
         verify(noteRepository, never()).updateNote(any(Note.class));
+    }
+
+    /*
+
+     */
+
+    @Test
+    void testNote_shouldAllowSave_returnFalse() throws Exception {
+        // Arrange
+        Note note = new Note(TestUtil.TEST_NOTE_1);
+        note.setContent(null);
+
+        // Act
+        noteViewModel.setNote(note);
+        noteViewModel.setIsNewNote(true);
+
+        // Assert
+        Exception exception = assertThrows(Exception.class, new Executable() {
+            @Override
+            public void execute() throws Throwable {
+                noteViewModel.saveNote();
+            }
+        });
+
+        assertEquals(NO_CONTENT_ERROR, exception.getMessage());
     }
 }

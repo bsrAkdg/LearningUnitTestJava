@@ -61,8 +61,12 @@ public class NoteViewModel extends ViewModel {
         return string;
     }
 
-    private boolean shouldAllowSave() {
-        return removeWhiteSpace(note.getValue().getContent()).length() > 0;
+    private boolean shouldAllowSave() throws Exception {
+        try {
+            return removeWhiteSpace(note.getValue().getContent()).length() > 0;
+        } catch (NullPointerException exception) {
+            throw new Exception(NO_CONTENT_ERROR);
+        }
     }
 
     public LiveData<Resource<Integer>> insertNote() throws Exception {
